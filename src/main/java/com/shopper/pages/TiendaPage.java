@@ -225,7 +225,7 @@ public class TiendaPage extends BasePage{
         click(btnFinalizarPedido);
                         
         Utilidades.screenshot();
-        Utilidades.waitInMs(3000);
+        Utilidades.waitInMs(5000);
         Utilidades.screenshot();
             	
         return this;

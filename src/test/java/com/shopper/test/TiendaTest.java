@@ -27,7 +27,7 @@ public class TiendaTest extends BaseTest{
     @Description("Seleccionar Tienda y Comprar Consumidor")
     @Story("Compra")
     @TmsLink("XRPRJ-1")
-    public void ingresarPortalConsumidor () throws Exception {
+    public void generarCompraConsumidor () throws Exception {
 		home.irPortal(getProperties().getProperty("url"))
         .seleccionarCiudad("Bogotá")
         .comprobarResultadoCorrecto()

@@ -8,9 +8,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.shopper.pages.BuscadorPage;
+import com.shopper.pages.CompraNuevoConsumidor;
 import com.shopper.pages.HomePage;
 import com.shopper.pages.LoginPage;
 import com.shopper.pages.RegistroConsumidorPage;
+import com.shopper.pages.RegistroTenderoPage;
+import com.shopper.pages.TenderoPage;
 import com.shopper.pages.TiendaPage;
 
 public class BaseTest {
@@ -21,6 +24,9 @@ public class BaseTest {
     public LoginPage login;
     public TiendaPage tienda;
     public RegistroConsumidorPage registroCons;
+    public CompraNuevoConsumidor compraNuevo;
+    public RegistroTenderoPage registroTendero;
+    public TenderoPage tendero;
 
     public WebDriver getDriver() {
         return driver;
@@ -40,6 +46,9 @@ public class BaseTest {
         login = new LoginPage(driver);
         tienda = new TiendaPage(driver);
         registroCons = new RegistroConsumidorPage(driver);
+        compraNuevo = new CompraNuevoConsumidor(driver);
+        registroTendero = new RegistroTenderoPage(driver);
+        tendero = new TenderoPage(driver);
     }
 
     @AfterMethod

@@ -66,7 +66,7 @@ public class RegistroConsumidorPage extends BasePage{
         
 		Utilidades.screenshot();
 		click(btnConfirmarUbicacion);
-        Utilidades.waitInMs(2000);
+        Utilidades.waitInMs(5000);
         return this;
     }
 

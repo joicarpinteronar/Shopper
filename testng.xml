@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Allure TestNG Suite Example" verbose="1" thread-count="1" configfailurepolicy="continue">
+<suite name="Shopper Test Suite" verbose="1" thread-count="1" configfailurepolicy="continue">
     <listeners>
-        <listener class-name="com.example.test.utils.Listeners.TestListener"/>
+        <listener class-name="com.shopper.test.utils.Listeners.TestListener"/>
     </listeners>
-    <test name="Allure TestNG Test">
+    <test name="Shopper Test">
     <classes>
-        <class name="com.example.test.Launch"/>
+        <class name="com.shopper.test.HomeTest"/>
+        <class name="com.shopper.test.LoginTest"/>
+        <class name="com.shopper.test.RegistroConsumidorTest"/>
+        <class name="com.shopper.test.CompraNuevoConsumidorTest"/>
+        <class name="com.shopper.test.TiendaTest"/>
+        <class name="com.shopper.test.RegistroTenderoTest"/>
+        <class name="com.shopper.test.TenderoTest"/>
     </classes>
 </test>
 </suite>
