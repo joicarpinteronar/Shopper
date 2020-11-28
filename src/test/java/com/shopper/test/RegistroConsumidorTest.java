@@ -34,9 +34,9 @@ public class RegistroConsumidorTest extends BaseTest {
         .seleccionarCiudad("Bogotá")
         .comprobarResultadoCorrecto()
         .seleccionarRol("Consumidor");
-		login.ingresarNumeroCelular("3134864329");
+		login.ingresarNumeroCelular("3201764729");
 		registroCons.validarTerminos()
-		.ingresarDatosPersonales("Alejandra","Sanchez","alecon7@gmail.com")
+		.ingresarDatosPersonales("Alejandra","Sanchez","cgonzale1@serempre.com")
 		.ingresarUbicacionConsumidor("Cl. 65 #14-28, Bogotá, Colombia");
 		    
         

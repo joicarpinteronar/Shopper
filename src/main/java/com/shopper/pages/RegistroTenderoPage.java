@@ -48,6 +48,7 @@ public class RegistroTenderoPage extends BasePage{
 	@Step("Ingresar Codigo Tendero")
     public RegistroTenderoPage ingresarCodigoTendero(String codigo) {
         Utilidades.waitInMs(500);
+        clear(txtCodigoCliente);
         writeText(txtCodigoCliente, codigo);
         Utilidades.screenshot();
         click(btnValidarUsuario);

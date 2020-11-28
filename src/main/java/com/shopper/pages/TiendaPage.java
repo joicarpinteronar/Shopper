@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 public class TiendaPage extends BasePage{
 	
 	By btnTienda1=By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[3]/div[2]/div[2]/ul/li[2]/div/div[1]");
-	By btnTienda4=By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/section[1]/ul/li[4]/div/div[1]");
+	By btnTienda4=By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/section[3]/section/div[4]/div[2]");
 	By btnProducto1 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[1]/div/div[3]/button");
 	By btnProducto2 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[2]/div/div[3]/button");
 	By btnProducto3 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[3]/div/div[3]/button");
@@ -44,17 +44,30 @@ public class TiendaPage extends BasePage{
 	By btnProdSnacks5 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[8]/div[2]/div[5]/div/div[3]/button");
 	
 	By btnCarrito = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/button/span[1]");
-	By btnContinuar = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[4]/button");
+	By btnContinuar = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[6]/button");
 	By btnGenero = By.id("abi-validate-gender-F");
 	By txtFechaNacimiento = By.id("abi-validate-date-birth");
 	By btnContinuarValDatos = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/form/button");
 	By btnFinalizarPedido = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/section[5]/button");
+	By lblPagoEfectivo = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[6]/div/div[2]/div[2]");
+	By lblPagoDatafono = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[6]/div/div[3]/div[2]");
 	
 	By txt_to_apto_casa = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/input");
 	By txtIntruccionEntrega = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[3]/textarea");
 	By btnDireccionDeMi = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[4]/div/div[1]/figure");
 	By btnGuardar = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/button");
-
+	By lblResultCompra = By.xpath("//div/div/div/p");
+	
+	By lblPerfil = By.name("Perfil");
+	By lblCerrarSesion = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[6]/div/div[2]");
+	By btnSiSalir = By.xpath("//*[@id=\"html\"]/body/div[2]/div[3]/div/div[2]/button[2]");
+	By btnNoSalir = By.xpath("//*[@id=\"html\"]/body/div[2]/div[3]/div/div[2]/button[1]");
+    By lblTienePedidosActivos = By.xpath("//figure/img");
+    By btnVerPedidoEnCurso = By.xpath("//div[3]/button/span");
+    By lblEstadoEnCaminoConsumidor = By.xpath("//div/div[2]/p");
+    
+	
+	
 	public TiendaPage(WebDriver driver) {
 		super(driver);
 		
@@ -197,13 +210,18 @@ public class TiendaPage extends BasePage{
     	
         return this;
     }
-	@Step("Ver Resumen de Productos")
-    public TiendaPage verResumenProd() {
+	@Step("Ver Resumen de Productos y Seleccionar Forma de Pago")
+    public TiendaPage verResumenProd(String formaPago) {
         Utilidades.waitInMs(1000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
     	js.executeScript("window.scrollBy(0,1000)");
         Utilidades.screenshot();
         js.executeScript("window.scrollBy(0,3000)");
+        if(formaPago == "Efectivo") {
+        	click(lblPagoEfectivo);
+        }else if(formaPago == "Datafono") {
+        	click(lblPagoDatafono);
+        }
         Utilidades.screenshot();
         click(btnContinuar);
                         
@@ -212,6 +230,7 @@ public class TiendaPage extends BasePage{
             	
         return this;
     }
+	
 	
 	@Step("Ver Totales y Finalizar Pedido")
     public TiendaPage finalizarPedido() {
@@ -225,17 +244,65 @@ public class TiendaPage extends BasePage{
         click(btnFinalizarPedido);
                         
         Utilidades.screenshot();
-        Utilidades.waitInMs(5000);
+        Utilidades.waitInMs(1000);
         Utilidades.screenshot();
             	
         return this;
     }
-	@Step("Comprobar que el Pedido fue Realizado")
-    public TiendaPage comprobarResultadoCorrecto() {
-        Utilidades.waitInMs(1000);
+	@Step("Comprobar que el Pedido fue Enviado")
+    public TiendaPage comprobarResultadoCorrectoCompra() {
+        
         Utilidades.screenshot();
-        //Assert.assertEquals(getElement(lblBienvenido).getText(), "Bienvenido");
+        Assert.assertEquals(getElement(lblResultCompra).getText(), "Hemos tomado tu pedido");
+        Utilidades.waitInMs(5000);
         return this;
     }
-
+	
+	@Step("Cerrar Sesion Consumidor")
+    public TiendaPage cerrarSesionConsumidor() {
+		Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        click(lblPerfil);
+        Utilidades.screenshot();
+        click(lblCerrarSesion);
+        Utilidades.screenshot();
+        click(btnSiSalir);
+        Utilidades.waitInMs(2000);
+        return this;
+    }
+	
+	@Step("Validar Pedidos Activos")
+    public TiendaPage validarPedidosActivos() {
+		Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        click(lblTienePedidosActivos);
+        Utilidades.screenshot();
+       
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	@Step("Seleccionar Pedidos en Curso")
+    public TiendaPage seleccionarPedidosEnCurso() {
+		Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        click(btnVerPedidoEnCurso);
+        Utilidades.screenshot();
+       
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	
+	@Step("Validar Estado en Camino Consumidor")
+    public TiendaPage comprobarResultadoEstadoEnCamino() {
+        
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblEstadoEnCaminoConsumidor).getText(), "En camino");
+        Utilidades.screenshot();
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	
+	
+	
+	
 }

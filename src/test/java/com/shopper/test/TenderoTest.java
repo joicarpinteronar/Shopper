@@ -37,6 +37,8 @@ public Properties fileprops = new Properties();
 		
 		login.ingresarCodigoValidacion("1", "2", "3", "4", "5");
 		tendero.seleccionarProductoTendero()
+		.cambiarHorario("08","00","am","10","00","pm")
+		.configurarDomicilio("60000", "10000", "30", "2000")
 		.activarTienda();
 	}
 

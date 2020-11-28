@@ -21,6 +21,7 @@ public class TiendaTest extends BaseTest{
         fileprops.load(new FileInputStream(new File("src/test/resources/test.properties").getAbsolutePath()));
         return fileprops;
     }
+	/*
 		
 	@Test(priority=0, description="Seleccionar Tienda y Comprar")
     @Severity(SeverityLevel.NORMAL)
@@ -32,7 +33,7 @@ public class TiendaTest extends BaseTest{
         .seleccionarCiudad("Bogotá")
         .comprobarResultadoCorrecto()
         .seleccionarRol("Consumidor");
-		login.ingresarNumeroCelular("3138017395")
+		login.ingresarNumeroCelular("3222255941")
 		.ingresarCodigoValidacion("1", "2", "3", "4", "5");
 		tienda.seleccionarTienda()
 		.seleccionarProductoAbarrotes()
@@ -43,8 +44,65 @@ public class TiendaTest extends BaseTest{
 		.seleccionarProdLacteo()
 		.seleccionarProdSnack()
 		.verCarrito()
-		.verResumenProd()
-		.finalizarPedido();
+		.verResumenProd("Efectivo")
+		.finalizarPedido()
+		.comprobarResultadoCorrectoCompra();
+        
+    }*/
+	
+	@Test(priority=1, description="Validar Flujo Completo de Compra")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Validar Flujo Completo de Compra")
+    @Story("Compra")
+    @TmsLink("XRPRJ-1")
+    public void validarCompraConsumidor () throws Exception {
+		home.irPortal(getProperties().getProperty("url"))
+        .seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Consumidor");
+		login.ingresarNumeroCelular("3222255941")
+		.ingresarCodigoValidacion("1", "2", "3", "4", "5");
+		tienda.seleccionarTienda()
+		.seleccionarProductoAbarrotes()
+		.seleccionarProductoBebidas()
+		.seleccionarProdCerveza()
+		.seleccionarProdCuidadoHogar()
+		.seleccionarProdCuidadoPersonal()
+		//.seleccionarProdLacteo()
+		//.seleccionarProdSnack()
+		.verCarrito()
+		.verResumenProd("Efectivo")
+		.finalizarPedido()
+		.comprobarResultadoCorrectoCompra()
+		.cerrarSesionConsumidor();
+		home.seleccionarCiudad("Bogotá")
+		.seleccionarRol("Tendero");
+		registroTendero.ingresarCodigoTendero("12711462");
+		login.ingresarCodigoValidacion("1", "2", "3", "4", "5");
+		tendero.seleccionarTusPedidos()
+		.seleccionarPedido()
+		.comprobarResultadoCorrectoPedido()
+		.cambiarEstadoPedidoEnCamino()
+		.cerrarSesionTendero();
+		home.seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Consumidor");
+		login.ingresarNumeroCelular("3222255941")
+		.ingresarCodigoValidacion("1", "2", "3", "4", "5");
+		tienda.validarPedidosActivos()
+		.seleccionarPedidosEnCurso()
+		.comprobarResultadoEstadoEnCamino();
+		tienda.cerrarSesionConsumidor();
+		home.seleccionarCiudad("Bogotá")
+		.seleccionarRol("Tendero");
+		registroTendero.ingresarCodigoTendero("12711462");
+		login.ingresarCodigoValidacion("1", "2", "3", "4", "5");
+		tendero.seleccionarTusPedidos()
+		.cambiarEstadoEntregado()
+		.validarMetasTendero()
+		.validarHistorialPedidos()
+		.comprobarResultadoEstadoEntregado();
+		
         
     }
 	

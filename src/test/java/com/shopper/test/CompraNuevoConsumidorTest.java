@@ -33,7 +33,7 @@ public class CompraNuevoConsumidorTest extends BaseTest {
 		login.ingresarNumeroCelular("3207474847");
 		
 		registroCons.validarTerminos()
-		.ingresarDatosPersonales("Lorena","Gonzalez","lore347@gmail.com")
+		.ingresarDatosPersonales("Lorena","Gonzalez","lcontreras@serempre.com")
 		.ingresarUbicacionConsumidor("Cl. 65 #14-28, Bogotá, Colombia");
 		
 		login.ingresarCodigoValidacion("1", "2", "3", "4", "5");
@@ -42,7 +42,7 @@ public class CompraNuevoConsumidorTest extends BaseTest {
 		
 		tienda.seleccionarProductoAbarrotes()
 		.verCarrito()
-		.verResumenProd();
+		.verResumenProd("Efectivo");
 		compraNuevo.validarDatosConsumidor("23","11","1984")
 		.complementarDireccion("TO 4 Apto 505","Al lado del Parque","Casa");
 		tienda.finalizarPedido();

@@ -30,5 +30,8 @@ public class BasePage {
     public void click (By elementLocation) {
         driver.findElement(elementLocation).click();
     }
+    public void clear(By elementLocation) {
+    	driver.findElement(elementLocation).clear();
+    }
 
 }

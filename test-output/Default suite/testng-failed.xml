@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.shopper.test.TenderoTest">
+      <class name="com.shopper.test.LoginTest">
         <methods>
           <include name="tearDown"/>
-          <include name="activarTiendaTendero"/>
           <include name="inicializar"/>
+          <include name="validarCampoLoginTendero"/>
         </methods>
-      </class> <!-- com.shopper.test.TenderoTest -->
+      </class> <!-- com.shopper.test.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

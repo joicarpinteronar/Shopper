@@ -19,7 +19,7 @@ public class RegistroConsumidorPage extends BasePage{
 	By txtNombre = By.id("register-name");
 	By txtApellido = By.id("register-lastName");
 	By txtCorreo = By.id("register-email");
-	By btnSiguiente = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div/button[2]");
+	By btnSiguiente = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div/button");
 	By btnIngreseUbicacion = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[1]/div/div/div[2]/div/div[1]/button");
 	By txtUbicacion = By.id("address");
 	By btnConfirmarUbicacion = By.xpath("//*[@id=\"html\"]/body/div[2]/div[3]/div/div/div[2]/div/form[2]/button");
@@ -60,7 +60,7 @@ public class RegistroConsumidorPage extends BasePage{
         Utilidades.waitInMs(2000);
         writeText(txtUbicacion, direccion);
         Utilidades.waitInMs(2000);
-        //Utilidades.seleccionarKeyBoard(driver.findElement(txtUbicacion));
+        
         click(selDireccion);
         Utilidades.waitInMs(2000);
         
