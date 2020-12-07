@@ -41,14 +41,14 @@ public class TiendaTest extends BaseTest{
 		.seleccionarProdCerveza()
 		.seleccionarProdCuidadoHogar()
 		.seleccionarProdCuidadoPersonal()
-		.seleccionarProdLacteo()
-		.seleccionarProdSnack()
+		//.seleccionarProdLacteo()
+		//.seleccionarProdSnack()
 		.verCarrito()
 		.verResumenProd("Efectivo")
 		.finalizarPedido()
 		.comprobarResultadoCorrectoCompra();
         
-    }*/
+    }
 	
 	@Test(priority=1, description="Validar Flujo Completo de Compra")
     @Severity(SeverityLevel.NORMAL)
@@ -105,6 +105,33 @@ public class TiendaTest extends BaseTest{
 		
         
     }
+	*/
+	@Test(priority=2, description="Asignar la Cantidad de Productos a Comprar")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Cantidad de Produtos")
+    @Story("Compra")
+    @TmsLink("XRPRJ-1")
+    public void asignarCantidadProductos () throws Exception {
+		home.irPortal(getProperties().getProperty("url"))
+        .seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Consumidor");
+		login.ingresarNumeroCelular("3222255941")
+		.ingresarCodigoValidacion("1", "2", "3", "4", "5");
+		tienda.seleccionarTienda()
+		.seleccionarProductoAbarrotes()
+		.seleccionarProductoBebidas()
+		.seleccionarProdCerveza()
+		.seleccionarProdCuidadoHogar()
+		.seleccionarProdCuidadoPersonal()
+		.verCarrito()
+		.aumentarProdutosResumen()
+		.comprobarResultadoTotalCompra("$ 235.600")
+		.verResumenProd("Efectivo")
+		.finalizarPedido()
+		.comprobarResultadoCorrectoCompra();
+        
+    }
 	
-
+	
 }

@@ -1,15 +1,21 @@
 package com.shopper.test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.shopper.pages.ActuConsumidorPage;
 
 import com.shopper.pages.CompraNuevoConsumidor;
+import com.shopper.pages.GestionProductoPage;
 import com.shopper.pages.HomePage;
 import com.shopper.pages.LoginPage;
 
@@ -30,6 +36,7 @@ public class BaseTest {
     public RegistroTenderoPage registroTendero;
     public TenderoPage tendero;
     public ActuConsumidorPage actualizaConsumidor;
+    public GestionProductoPage gestion;
 
     public WebDriver getDriver() {
         return driver;
@@ -37,15 +44,21 @@ public class BaseTest {
 
     @BeforeMethod
     public void inicializar() {
+    	
+    	
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--start-maximized");
+        
+        
         //options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         
-        home = new HomePage(driver);
+    	
+       
+		home = new HomePage(driver);
         login = new LoginPage(driver);
         tienda = new TiendaPage(driver);
         registroCons = new RegistroConsumidorPage(driver);
@@ -54,7 +67,10 @@ public class BaseTest {
         tendero = new TenderoPage(driver);
         
         actualizaConsumidor = new ActuConsumidorPage(driver);
+        gestion = new GestionProductoPage(driver);
     }
+    
+    
 
     @AfterMethod
     public void tearDown () {

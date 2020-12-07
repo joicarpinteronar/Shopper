@@ -56,7 +56,7 @@ public class LoginTest extends BaseTest{
 		login.ingresarCodigoValidacion("1", "2", "3", "4", "5")
 		.comprobarResultadoLoginTendero();
         
-    }*/
+    }
 	
 	@Test(priority=2, description="Validar Campo Login Tendero")
     @Severity(SeverityLevel.BLOCKER)
@@ -74,6 +74,21 @@ public class LoginTest extends BaseTest{
 		login.validarLoginMaxCaracteres("• El campo client code debe ser un número entero.El campo client code debe contener entre 1 y 20 dígitos.");
 		registroTendero.ingresarCodigoTendero("");
 		login.validarLoginVacio("El código de cliente es obligatorio");			
+        
+    }*/
+	@Test(priority=3, description="Validar Campo Login Tendero")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Validar Codigo OTP erroneo Tendero")
+    @Story("Tendero")
+    @TmsLink("XRPRJ-1")
+    public void validarCodigoOTPTendero () throws Exception {
+		home.irPortal(getProperties().getProperty("url"))
+        .seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Tendero");
+		registroTendero.ingresarCodigoTendero("12711462");
+		login.ingresarCodigoValidacion("1", "2", "3", "1", "8")
+		.validarCodigoErroneo("Código no válido");			
         
     }
 	

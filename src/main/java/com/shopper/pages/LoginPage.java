@@ -26,6 +26,7 @@ public class LoginPage extends BasePage {
 	By popUpResultCodNoExiste = By.xpath("//div[2]/div/div/div/div/div/div");
 	By popUoResultMaxCaracteres = By.xpath("//div/div/div[2]");
 	By lblResultCampoVacio = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[2]/div/div/div");
+	By lblResultCodigo = By.xpath("//div[2]/div/div/div/div/div/div");
 	
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -113,6 +114,14 @@ public class LoginPage extends BasePage {
         Utilidades.waitInMs(2000);
         Utilidades.screenshot();
         Assert.assertEquals(getElement(lblResultCampoVacio).getText(), resultado);
+        return this;
+    }
+	
+	@Step("Validar Codigo OTP Erroneo")
+	public LoginPage validarCodigoErroneo(String resultado) {
+        Utilidades.waitInMs(2000);
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblResultCodigo).getText(), resultado);
         return this;
     }
 

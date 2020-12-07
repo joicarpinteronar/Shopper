@@ -20,25 +20,30 @@ public class RegistroTenderoPage extends BasePage{
 	By btnContinuarDatosPersonales = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[3]/button");
 	
 	By checkConfirmoServicio = By.id("abi-1");
-	By btnSiguienteConfirmo = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[2]/div/button[2]");
+	By btnSiguienteConfirmo = By.xpath("//button/span");
 	By cbxTipoNegocio = By.id("id-businessType");
-	By btnSiguienteTipNeg = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[2]/div/button[2]");
+	By btnSiguienteTipNeg = By.xpath("//button/span");
 	
 	By btnAbarrotes = By.id("abarrotes");
 	By btnBebidas = By.id("bebidas");
 	By btnCervezas = By.id("cervezas");
 	By btnCuidadoHogar = By.id("ciudado_hogar");
 	By btnCuidadoPersonal = By.id("ciudado_personal");
-	By btnSiguienteCategoria = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[2]/div/button[2]");
+	By btnSiguienteCategoria = By.xpath("//button/span");
 	
 	By checkEfectivo = By.id("cash");
 	By checkDatafono = By.id("pos");
-	By btnFinalizarRegistroTen = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/form/div[2]/div/button[2]");
+	By btnFinalizarRegistroTen = By.xpath("//button/span");
 	
-	By btnSiguienteCatIntro = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[2]/div/button");
-	By btnSiguineteHorIntro = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[2]/div/button");
-	By btnSiguienteDomIntro = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[2]/div/button");
-	By btnSiguienteCueIntro = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div/div[2]/div/button");
+	By lblResultRegistroTendero = By.xpath("//main/div/div/p");
+	By lblCodigoTenderoInvalido = By.xpath("//div[2]/div/div/div/div/div/div");
+	By lblResultDocumentoObligatorio = By.xpath("//div/div[2]/div");
+	By lblResultCampoCelVacio = By.xpath("//div[2]/div/div[2]/div/div");
+	
+	By btnSiguienteCatIntro = By.xpath("//span");
+	By btnSiguineteHorIntro = By.xpath("//span");
+	By btnSiguienteDomIntro = By.xpath("//span");
+	By btnSiguienteCueIntro = By.xpath("//span");
 	
 
 	public RegistroTenderoPage(WebDriver driver) {
@@ -109,10 +114,40 @@ public class RegistroTenderoPage extends BasePage{
         }
         Utilidades.screenshot();
         click(btnFinalizarRegistroTen);
-        Utilidades.waitInMs(3000);
+        Utilidades.waitInMs(5000);
         Utilidades.screenshot();
         return this;
  }
+	
+	@Step("Validar Resultado Registro Tendero")
+	public RegistroTenderoPage validarRegistroTendero(String resultado) {
+        Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblResultRegistroTendero).getText(), resultado);
+        Utilidades.waitInMs(4000);
+        return this;
+    }
+	
+	@Step("Validar Codigo Invalido Registro Tendero")
+	public RegistroTenderoPage validarCodigoInvalidoTendero(String resultado) {
+        Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblCodigoTenderoInvalido).getText(), resultado);
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	
+	@Step("Validar Campos Vacios")
+	public RegistroTenderoPage validarCampoVacio(String resultado, String resultado2) {
+        Utilidades.waitInMs(1000);
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblResultDocumentoObligatorio).getText(), resultado);
+        Utilidades.waitInMs(1000);
+        Assert.assertEquals(getElement(lblResultCampoCelVacio).getText(), resultado2);
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	
 	@Step("Validar Introduccion Tendero")
     public RegistroTenderoPage validarIntroduccion() {
         Utilidades.waitInMs(500);

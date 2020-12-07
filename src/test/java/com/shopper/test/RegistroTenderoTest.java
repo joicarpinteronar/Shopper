@@ -32,15 +32,52 @@ public class RegistroTenderoTest extends BaseTest {
         .seleccionarCiudad("Bogotá")
         .comprobarResultadoCorrecto()
         .seleccionarRol("Tendero");
-		registroTendero.ingresarCodigoTendero("100572905");
+		registroTendero.ingresarCodigoTendero("100612763");
 		registroCons.validarTerminos();
-		registroTendero.ingresarDatosTendero("100572905","3213192369");
+		registroTendero.ingresarDatosTendero("100612763","3213482379");
 		login.ingresarCodigoValidacion("1", "2", "3", "4", "5");
 		registroTendero.seleccionarServicioDomiciliario()
 		.seleccionarTipoNegocio("MINIMERCADO")
 		.seleccionarCategorias()
 		.seleccionarMedioPago("Efectivo")
+		//.validarRegistroTendero("¡Te has registrado")
 		.validarIntroduccion();		        
+    }/*
+	
+	@Test(priority=1, description="Validar Codigo Tendero")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Validar Codigo Erroneo Tendero")
+    @Story("Tendero")
+    @TmsLink("XRPRJ-1")
+    public void validarCodigoInvalido () throws Exception {
+		home.irPortal(getProperties().getProperty("url"))
+        .seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Tendero");
+		registroTendero.ingresarCodigoTendero("101034061");
+		registroCons.validarTerminos();
+		registroTendero.ingresarDatosTendero("10105286925","3223594679")
+		.validarCodigoInvalidoTendero("El número de documento no corresponde a la tienda");
+			        
     }
+	
+	@Test(priority=2, description="Validar Campos Vacios Documento y Numero Celular Tendero")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Validar Campos Vacio Tendero")
+    @Story("Tendero")
+    @TmsLink("XRPRJ-1")
+    public void validarCampoVacio () throws Exception {
+		home.irPortal(getProperties().getProperty("url"))
+        .seleccionarCiudad("Bogotá")
+        .comprobarResultadoCorrecto()
+        .seleccionarRol("Tendero");
+		registroTendero.ingresarCodigoTendero("101034061");
+		registroCons.validarTerminos();
+		registroTendero.ingresarDatosTendero("","")
+		.validarCampoVacio("El número de documento es obligatorio","El teléfono es obligatorio");
+			        
+    }*/
+	
+	
 
 }

@@ -13,6 +13,7 @@ public class TiendaPage extends BasePage{
 	
 	By btnTienda1=By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[3]/div[2]/div[2]/ul/li[2]/div/div[1]");
 	By btnTienda4=By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/section[3]/section/div[4]/div[2]");
+	By btnTienda5 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/section[3]/section/div[5]");
 	By btnProducto1 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[1]/div/div[3]/button");
 	By btnProducto2 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[2]/div/div[3]/button");
 	By btnProducto3 = By.xpath("//*[@id=\"root\"]/div[1]/main/div/div/div[2]/div[2]/div[2]/div[3]/div/div[3]/button");
@@ -66,6 +67,19 @@ public class TiendaPage extends BasePage{
     By btnVerPedidoEnCurso = By.xpath("//div[3]/button/span");
     By lblEstadoEnCaminoConsumidor = By.xpath("//div/div[2]/p");
     
+    By lblMasProd1 = By.xpath("//b");
+    By lblMasProd2 = By.xpath("//div[2]/div/div[2]/div/span/b");
+    By lblMasProd3 = By.xpath("//div[3]/div/div[2]/div/span/b");
+    By lblMasProd4 = By.xpath("//div[4]/div/div[2]/div/span/b/i[2]");
+    By lblMasProd5 = By.xpath("//div[5]/div/div[2]/div/span/b");
+    By lblMasProd6 = By.xpath("//div[6]/div/div[2]/div/span/b/i[2]");
+    By lblMasProd7 = By.xpath("//div[7]/div/div[2]/div/span/b/i[2]");
+    
+    By lblMenosProd3 = By.xpath("//div[6]/div/div[2]/div/span/b[2]/i");
+    By lblResultTotal = By.xpath("//div[4]/p[2]");
+    
+    		
+    
 	
 	
 	public TiendaPage(WebDriver driver) {
@@ -74,9 +88,9 @@ public class TiendaPage extends BasePage{
 	}
 	@Step("Seleccionar Tienda Cercana")
     public TiendaPage seleccionarTienda() {
-        Utilidades.waitInMs(500);
+        Utilidades.waitInMs(2000);
         Utilidades.screenshot();
-        click(btnTienda4);
+        click(btnTienda5);
         Utilidades.waitInMs(1000);
         return this;
     }
@@ -212,7 +226,7 @@ public class TiendaPage extends BasePage{
     }
 	@Step("Ver Resumen de Productos y Seleccionar Forma de Pago")
     public TiendaPage verResumenProd(String formaPago) {
-        Utilidades.waitInMs(1000);
+        Utilidades.waitInMs(2000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
     	js.executeScript("window.scrollBy(0,1000)");
         Utilidades.screenshot();
@@ -301,6 +315,99 @@ public class TiendaPage extends BasePage{
         Utilidades.waitInMs(1000);
         return this;
     }
+	
+	@Step("Aumentar la Cantidad de Productos en el Resumen")
+    public TiendaPage aumentarProdutosResumen() {
+		Utilidades.waitInMs(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+    	js.executeScript("window.scrollBy(0,-3000)");
+        Utilidades.screenshot();
+        click(lblMasProd1);
+        click(lblMasProd1);
+        click(lblMasProd1);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd2);
+        click(lblMasProd2);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd5);
+        click(lblMasProd5);
+        click(lblMasProd5);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd6);
+        click(lblMasProd6);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd7);
+        click(lblMasProd7);
+        click(lblMasProd7);
+        click(lblMasProd7);
+        click(lblMasProd7);
+        click(lblMasProd7);
+        Utilidades.screenshot();
+       
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	@Step("Aumentar la Cantidad de Productos en el Resumen")
+    public TiendaPage aumentarProdutosResumen2() {
+		Utilidades.waitInMs(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+    	js.executeScript("window.scrollBy(0,-3000)");
+        Utilidades.screenshot();
+        click(lblMasProd1);
+        click(lblMasProd1);
+        click(lblMasProd1);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd2);
+        click(lblMasProd2);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        click(lblMasProd3);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        click(lblMasProd4);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd5);
+        click(lblMasProd5);
+        click(lblMasProd5);
+        Utilidades.waitInMs(1000);
+        click(lblMasProd6);
+        click(lblMasProd6);
+        click(lblMasProd6);
+        click(lblMasProd6);
+        click(lblMasProd6);
+        Utilidades.waitInMs(1000);
+        
+        Utilidades.screenshot();
+       
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	@Step("Validar Estado en Camino Consumidor")
+    public TiendaPage comprobarResultadoTotalCompra(String resultado) {
+        
+        Utilidades.screenshot();
+        Assert.assertEquals(getElement(lblResultTotal).getText(), resultado);
+        Utilidades.screenshot();
+        Utilidades.waitInMs(1000);
+        return this;
+    }
+	
+
+	
 	
 	
 	
